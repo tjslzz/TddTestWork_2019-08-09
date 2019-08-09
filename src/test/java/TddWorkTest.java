@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 
 public class TddWorkTest {
 
-    private String user1;
-    private String user2;
+    private Poker poker1;
+    private Poker poker2;
     private TddWork tddWork;
 
     @Before
     public void setUp(){
-        user1 = "2H";
-        user2 = "3D";
+        poker1 = new Poker("H","2");
+        poker2 = new Poker("D","3");
         tddWork = new TddWork();
     }
 
     @Test
     public void should_return_3D_when_call_judges_given_2H_and_3D(){
-        assertEquals("3D",tddWork.judges(user1,user2));
+        assertEquals("3D",tddWork.judges(poker1,poker2));
     }
 }
