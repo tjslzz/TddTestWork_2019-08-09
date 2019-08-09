@@ -20,4 +20,10 @@ public class TddWorkTest {
     public void should_return_3D_when_call_judges_given_2H_and_3D(){
         assertEquals("3D",tddWork.judges(poker1,poker2));
     }
+
+    @Test
+    public void should_return_equal_when_call_judges_given_2H_and_2H(){
+        poker2.setNumber("2");
+        assertEquals("平局",tddWork.judges(poker1,poker2));
+    }
 }
