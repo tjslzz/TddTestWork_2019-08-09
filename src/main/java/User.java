@@ -6,6 +6,8 @@ public class User {
     private String userName;
     private List<Poker> pokers;
     private static final Long COUNT_POKERS = 5L;
+    private static final int HIGH_CARD_LEVEL = 1;
+    private static final int PAIR_LEVEL = 2;
 
     public User(String userName, List<Poker> pokers) {
         this.userName = userName;
@@ -25,8 +27,8 @@ public class User {
     }
 
     public int getMyLevel() {
-        if (isPair()) return 2;
-        return 1;
+        if (isPair()) return PAIR_LEVEL;
+        return HIGH_CARD_LEVEL;
     }
 
     private Boolean isPair() {
