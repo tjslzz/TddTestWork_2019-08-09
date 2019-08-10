@@ -106,6 +106,12 @@ public class TddWorkTest {
         assertEquals(7, user1.getMyLevel());
     }
 
+    @Test
+    public void should_return_lev8_when_call_getMyLevel_given_straight_flush() {
+        user1.setPokers(straightFlush());
+        assertEquals(8, user1.getMyLevel());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
@@ -172,6 +178,16 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.D, "2"));
         list.add(new Poker(PokerColor.H, "2"));
         list.add(new Poker(PokerColor.S, "2"));
+        list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
+    private List<Poker> straightFlush() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "6"));
+        list.add(new Poker(PokerColor.C, "7"));
+        list.add(new Poker(PokerColor.C, "8"));
+        list.add(new Poker(PokerColor.C, "9"));
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }

@@ -42,11 +42,6 @@ public class User {
         return duplicateLevel();
     }
 
-    private Boolean isFlush() {
-        List<String> list = pokers.stream().map(Poker::getColor).collect(Collectors.toList());
-        return list.stream().distinct().count() == IS_FLUSH;
-    }
-
     private int duplicateLevel() {
         int maxDuplicate = 2;
         List<String> list = new ArrayList<>();
@@ -75,5 +70,10 @@ public class User {
                 return max == IS_FOUR_KIND ? FOUR_KIND_LEVEL : FULL_HOUSE_LEVEL;
         }
         return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
+    }
+
+    private Boolean isFlush() {
+        List<String> list = pokers.stream().map(Poker::getColor).collect(Collectors.toList());
+        return list.stream().distinct().count() == IS_FLUSH;
     }
 }
