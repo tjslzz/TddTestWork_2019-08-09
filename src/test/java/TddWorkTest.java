@@ -89,27 +89,33 @@ public class TddWorkTest {
     }
 
     @Test
-    public void should_return_lev5_when_call_getMyLevel_given_flush() {
-        user1.setPokers(flush());
+    public void should_return_lev5_when_call_getMyLevel_given_straight() {
+        user1.setPokers(straight());
         assertEquals(5, user1.getMyLevel());
     }
 
     @Test
-    public void should_return_lev6_when_call_getMyLevel_given_full_house() {
-        user1.setPokers(fullHouse());
+    public void should_return_lev6_when_call_getMyLevel_given_flush() {
+        user1.setPokers(flush());
         assertEquals(6, user1.getMyLevel());
     }
 
     @Test
-    public void should_return_lev7_when_call_getMyLevel_given_four_of_a_kind() {
-        user1.setPokers(fourKind());
+    public void should_return_lev7_when_call_getMyLevel_given_full_house() {
+        user1.setPokers(fullHouse());
         assertEquals(7, user1.getMyLevel());
     }
 
     @Test
-    public void should_return_lev8_when_call_getMyLevel_given_straight_flush() {
-        user1.setPokers(straightFlush());
+    public void should_return_lev8_when_call_getMyLevel_given_four_of_a_kind() {
+        user1.setPokers(fourKind());
         assertEquals(8, user1.getMyLevel());
+    }
+
+    @Test
+    public void should_return_lev9_when_call_getMyLevel_given_straight_flush() {
+        user1.setPokers(straightFlush());
+        assertEquals(9, user1.getMyLevel());
     }
 
     @Test
@@ -168,6 +174,16 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.H, "2"));
         list.add(new Poker(PokerColor.S, "6"));
         list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
+    private List<Poker> straight() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "8"));
+        list.add(new Poker(PokerColor.D, "9"));
+        list.add(new Poker(PokerColor.H, "T"));
+        list.add(new Poker(PokerColor.S, "J"));
+        list.add(new Poker(PokerColor.C, "Q"));
         return list;
     }
 
