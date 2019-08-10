@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -22,6 +23,16 @@ public class User {
     }
 
     public int getMyLevel() {
+        if(isPair()) return 2;
         return 1;
+    }
+
+    private Boolean isPair(){
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            if(list.contains(pokers.get(i).getNumber())) return true;
+            list.add(pokers.get(i).getNumber());
+        }
+        return false;
     }
 }

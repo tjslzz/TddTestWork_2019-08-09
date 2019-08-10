@@ -37,7 +37,7 @@ public class Poker {
         return poker.number;
     }
 
-    private String getNumber() {
+    public String getNumber() {
         switch (number) {
             case "11":
                 return "T";
