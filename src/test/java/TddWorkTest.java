@@ -97,9 +97,9 @@ public class TddWorkTest {
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
-        list.add(new Poker(PokerColor.C, "4"));
-        list.add(new Poker(PokerColor.C, "6"));
-        list.add(new Poker(PokerColor.C, "8"));
+        list.add(new Poker(PokerColor.D, "4"));
+        list.add(new Poker(PokerColor.S, "6"));
+        list.add(new Poker(PokerColor.H, "8"));
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
@@ -107,9 +107,9 @@ public class TddWorkTest {
     private List<Poker> pair() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
-        list.add(new Poker(PokerColor.C, "2"));
-        list.add(new Poker(PokerColor.C, "6"));
-        list.add(new Poker(PokerColor.C, "8"));
+        list.add(new Poker(PokerColor.D, "2"));
+        list.add(new Poker(PokerColor.H, "6"));
+        list.add(new Poker(PokerColor.S, "8"));
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
@@ -117,9 +117,9 @@ public class TddWorkTest {
     private List<Poker> twoPair() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
-        list.add(new Poker(PokerColor.C, "2"));
-        list.add(new Poker(PokerColor.C, "6"));
-        list.add(new Poker(PokerColor.C, "6"));
+        list.add(new Poker(PokerColor.D, "2"));
+        list.add(new Poker(PokerColor.H, "6"));
+        list.add(new Poker(PokerColor.S, "6"));
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
@@ -127,9 +127,9 @@ public class TddWorkTest {
     private List<Poker> threeKind() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
-        list.add(new Poker(PokerColor.C, "2"));
-        list.add(new Poker(PokerColor.C, "2"));
-        list.add(new Poker(PokerColor.C, "6"));
+        list.add(new Poker(PokerColor.D, "2"));
+        list.add(new Poker(PokerColor.H, "2"));
+        list.add(new Poker(PokerColor.S, "6"));
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }

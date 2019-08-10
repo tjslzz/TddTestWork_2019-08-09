@@ -26,6 +26,8 @@ public class Poker {
         return this.getNumber() + this.color;
     }
 
+    public String getColor() { return color.name(); }
+
     private String setNumber(Poker poker) {
         switch (poker.number) {
             case "T":

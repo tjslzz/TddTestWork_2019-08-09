@@ -7,10 +7,13 @@ public class User {
     private List<Poker> pokers;
     private static final int IS_ONE_PAIR = 4;
     private static final int IS_THREE_KIND = 3;
+    private static final Long IS_FLUSH = 1L;
+
     private static final int HIGH_CARD_LEVEL = 1;
     private static final int PAIR_LEVEL = 2;
     private static final int TWO_PAIR_LEVEL = 3;
     private static final int THREE_KIND_LEVEL = 4;
+    private static final int FLUSH_LEVEL = 5;
 
     public User(String userName, List<Poker> pokers) {
         this.userName = userName;
@@ -30,6 +33,7 @@ public class User {
     }
 
     public int getMyLevel() {
+        if (isFlush()) return FLUSH_LEVEL;
         return duplicateLevel();
     }
 
@@ -48,5 +52,10 @@ public class User {
             if (list.size() == IS_ONE_PAIR) return PAIR_LEVEL;
             else return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
         }
+    }
+
+    private Boolean isFlush() {
+        List<String> list = pokers.stream().map(poker -> poker.getColor()).collect(Collectors.toList());
+        return list.stream().distinct().count() == IS_FLUSH;
     }
 }
