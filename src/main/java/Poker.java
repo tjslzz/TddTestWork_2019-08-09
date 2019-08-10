@@ -7,19 +7,12 @@ public class Poker {
         this.number = number;
     }
 
-
     protected String compareTo(Poker poker) {
-        if (Character.isDigit(this.number.charAt(0)) && Character.isDigit(poker.number.charAt(0))) {
-            if (Integer.valueOf(this.number) > Integer.valueOf(poker.number)) return this.toString();
-            else if (Integer.valueOf(this.number) == Integer.valueOf(poker.number)) return "平局";
-            return poker.toString();
-        } else {
-            this.number = setNumber(this);
-            poker.number = setNumber(poker);
-            if (Integer.valueOf(this.number) > Integer.valueOf(poker.number)) return this.toString();
-            else if (Integer.valueOf(this.number) == Integer.valueOf(poker.number)) return "平局";
-            return poker.toString();
-        }
+        this.number = setNumber(this);
+        poker.number = setNumber(poker);
+        if (Integer.valueOf(this.number) > Integer.valueOf(poker.number)) return this.toString();
+        else if (Integer.valueOf(this.number) == Integer.valueOf(poker.number)) return "平局";
+        return poker.toString();
     }
 
     public String toString() {
