@@ -22,6 +22,6 @@ public class User {
     }
 
     public int getMyLevel() {
-        return 0;
+        return 1;
     }
 }
