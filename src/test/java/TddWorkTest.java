@@ -16,17 +16,17 @@ public class TddWorkTest {
 
     @Before
     public void setUp() {
-        pokers1.add(new Poker(PokerColor.H, "2"));
+        pokers1.add(new Poker(PokerColor.H, "1"));
         pokers1.add(new Poker(PokerColor.D, "3"));
-        pokers1.add(new Poker(PokerColor.C, "2"));
-        pokers1.add(new Poker(PokerColor.D, "2"));
-        pokers1.add(new Poker(PokerColor.C, "2"));
+        pokers1.add(new Poker(PokerColor.S, "5"));
+        pokers1.add(new Poker(PokerColor.C, "7"));
+        pokers1.add(new Poker(PokerColor.H, "9"));
 
-        pokers2.add(new Poker(PokerColor.D, "T"));
-        pokers2.add(new Poker(PokerColor.D, "J"));
-        pokers2.add(new Poker(PokerColor.D, "Q"));
-        pokers2.add(new Poker(PokerColor.D, "K"));
-        pokers2.add(new Poker(PokerColor.D, "A"));
+        pokers2.add(new Poker(PokerColor.H, "2"));
+        pokers2.add(new Poker(PokerColor.D, "4"));
+        pokers2.add(new Poker(PokerColor.S, "6"));
+        pokers2.add(new Poker(PokerColor.C, "8"));
+        pokers2.add(new Poker(PokerColor.H, "T"));
 
         user1 = new User("JerryLi", pokers1);
         user2 = new User("Tomcat", pokers2);
@@ -40,16 +40,16 @@ public class TddWorkTest {
 
     @Test
     public void should_return_equal_when_call_compareTo_given_2H_and_2H() {
-        assertEquals("2平局", pokers1.get(2).compareTo(pokers1.get(3)).toString());
+        assertEquals("1平局", pokers1.get(0).compareTo(pokers1.get(0)).toString());
     }
 
     @Test
     public void should_return_bigger_one_when_call_compareTo_given_word_and_number() {
-        assertEquals("TD", pokers1.get(4).compareTo(pokers2.get(0)).toString());
-        assertEquals("JD", pokers2.get(0).compareTo(pokers2.get(1)).toString());
-        assertEquals("QD", pokers2.get(1).compareTo(pokers2.get(2)).toString());
-        assertEquals("KD", pokers2.get(2).compareTo(pokers2.get(3)).toString());
-        assertEquals("AD", pokers2.get(3).compareTo(pokers2.get(4)).toString());
+        assertEquals("TD", new Poker(PokerColor.D, "2").compareTo(new Poker(PokerColor.D, "T")).toString());
+        assertEquals("JD", new Poker(PokerColor.D, "T").compareTo(new Poker(PokerColor.D, "J")).toString());
+        assertEquals("QD", new Poker(PokerColor.D, "J").compareTo(new Poker(PokerColor.D, "Q")).toString());
+        assertEquals("KD", new Poker(PokerColor.D, "Q").compareTo(new Poker(PokerColor.D, "K")).toString());
+        assertEquals("AD", new Poker(PokerColor.D, "K").compareTo(new Poker(PokerColor.D, "A")).toString());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class TddWorkTest {
     public void should_return_winner_tomcat_when_call_judges_given_two_levels_user(){
         user1.setPokers(highCard());
         user2.setPokers(pair());
-        assertEquals("tomcat",tddWork.judges(user1,user2).getUserName());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     private List<Poker> highCard() {
