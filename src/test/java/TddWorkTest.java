@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class TddWorkTest {
-    
+
     private TddWork tddWork;
     private List<Poker> pokers1 = new ArrayList<>();
     private List<Poker> pokers2 = new ArrayList<>();
