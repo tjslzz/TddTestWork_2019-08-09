@@ -8,12 +8,14 @@ public class User {
     private static final int IS_ONE_PAIR = 4;
     private static final int IS_THREE_KIND = 3;
     private static final Long IS_FLUSH = 1L;
+    private static final int IS_FULL_HOUSE = 2;
 
     private static final int HIGH_CARD_LEVEL = 1;
     private static final int PAIR_LEVEL = 2;
     private static final int TWO_PAIR_LEVEL = 3;
     private static final int THREE_KIND_LEVEL = 4;
     private static final int FLUSH_LEVEL = 5;
+    private static final int FULL_HOUSE_LEVEL = 6;
 
     public User(String userName, List<Poker> pokers) {
         this.userName = userName;
@@ -50,6 +52,7 @@ public class User {
         if (list.size() == pokers.size()) return HIGH_CARD_LEVEL;
         else {
             if (list.size() == IS_ONE_PAIR) return PAIR_LEVEL;
+            else if(list.size() == IS_FULL_HOUSE) return FULL_HOUSE_LEVEL;
             else return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
         }
     }
