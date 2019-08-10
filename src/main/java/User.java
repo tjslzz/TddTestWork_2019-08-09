@@ -5,9 +5,11 @@ import java.util.stream.Collectors;
 public class User {
     private String userName;
     private List<Poker> pokers;
-    private static final Long COUNT_POKERS = 5L;
+    private static final Long COUNT_PAIR = 4L;
+    private static final Long COUNT_TWO_PAIR = 3L;
     private static final int HIGH_CARD_LEVEL = 1;
     private static final int PAIR_LEVEL = 2;
+    private static final int TWO_PAIR_LEVEL = 3;
 
     public User(String userName, List<Poker> pokers) {
         this.userName = userName;
@@ -27,12 +29,18 @@ public class User {
     }
 
     public int getMyLevel() {
+        if (isTwoPair()) return TWO_PAIR_LEVEL;
         if (isPair()) return PAIR_LEVEL;
         return HIGH_CARD_LEVEL;
     }
 
     private Boolean isPair() {
         List<String> list = pokers.stream().map(poker -> poker.getNumber()).collect(Collectors.toList());
-        return list.stream().distinct().count() != COUNT_POKERS;
+        return list.stream().distinct().count() == COUNT_PAIR;
+    }
+
+    private Boolean isTwoPair() {
+        List<String> list = pokers.stream().map(poker -> poker.getNumber()).collect(Collectors.toList());
+        return list.stream().distinct().count() == COUNT_TWO_PAIR;
     }
 }
