@@ -1,20 +1,20 @@
 public class Poker {
-    private String color;
+    private PokerColor color;
     private String number;
 
     public Poker() {
     }
 
-    public Poker(String color, String number) {
+    public Poker(PokerColor color, String number) {
         this.color = color;
         this.number = number;
     }
 
-    public String getColor() {
+    public PokerColor getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(PokerColor color) {
         this.color = color;
     }
 

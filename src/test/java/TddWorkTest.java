@@ -5,25 +5,23 @@ import static org.junit.Assert.*;
 
 public class TddWorkTest {
 
-    private Poker poker1;
-    private Poker poker2;
-    private TddWork tddWork;
-
-    @Before
-    public void setUp(){
-        poker1 = new Poker("H","2");
-        poker2 = new Poker("D","3");
-        tddWork = new TddWork();
+    @Test
+    public void should_return_3D_when_call_compareTo_given_2H_and_3D(){
+        Poker poker1 = new Poker(PokerColor.H,"2");
+        Poker poker2 = new Poker(PokerColor.D,"3");
+        assertEquals("3D",poker1.compareTo(poker2));
     }
 
     @Test
-    public void should_return_3D_when_call_judges_given_2H_and_3D(){
-        assertEquals("3D",tddWork.judges(poker1,poker2));
+    public void should_return_equal_when_call_compareTo_given_2H_and_2H(){
+        Poker poker1 = new Poker(PokerColor.C,"2");
+        Poker poker2 = new Poker(PokerColor.D,"2");
+        assertEquals("平局",poker1.compareTo(poker2));
     }
 
     @Test
-    public void should_return_equal_when_call_judges_given_2H_and_2H(){
-        poker2.setNumber("2");
-        assertEquals("平局",tddWork.judges(poker1,poker2));
+    public void should_return_bigger_one_when_call_compareTo_given_word_and_number(){
+        Poker poker1 = new Poker(PokerColor.C,"2");
+        Poker poker2 = new Poker(PokerColor.D,"T");
     }
 }
