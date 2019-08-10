@@ -88,13 +88,19 @@ public class TddWorkTest {
         assertEquals(4, user1.getMyLevel());
     }
 
+    @Test
+    public void should_return_lev5_when_call_getMyLevel_given_flush() {
+        user1.setPokers(flush());
+        assertEquals(5, user1.getMyLevel());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.C, "4"));
         list.add(new Poker(PokerColor.C, "6"));
         list.add(new Poker(PokerColor.C, "8"));
-        list.add(new Poker(PokerColor.C, "10"));
+        list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
 
@@ -104,7 +110,7 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.C, "6"));
         list.add(new Poker(PokerColor.C, "8"));
-        list.add(new Poker(PokerColor.C, "10"));
+        list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
 
@@ -114,7 +120,7 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.C, "6"));
         list.add(new Poker(PokerColor.C, "6"));
-        list.add(new Poker(PokerColor.C, "10"));
+        list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
 
@@ -124,7 +130,17 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.C, "6"));
-        list.add(new Poker(PokerColor.C, "10"));
+        list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
+    private List<Poker> flush() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "2"));
+        list.add(new Poker(PokerColor.C, "4"));
+        list.add(new Poker(PokerColor.C, "6"));
+        list.add(new Poker(PokerColor.C, "8"));
+        list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
 }
