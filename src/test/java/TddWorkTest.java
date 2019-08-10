@@ -23,5 +23,15 @@ public class TddWorkTest {
     public void should_return_bigger_one_when_call_compareTo_given_word_and_number(){
         Poker poker1 = new Poker(PokerColor.C,"2");
         Poker poker2 = new Poker(PokerColor.D,"T");
+        Poker poker3 = new Poker(PokerColor.D,"J");
+        Poker poker4 = new Poker(PokerColor.D,"Q");
+        Poker poker5 = new Poker(PokerColor.D,"K");
+        Poker poker6 = new Poker(PokerColor.D,"A");
+        assertEquals("TD",poker1.compareTo(poker2));
+        assertEquals("JD",poker2.compareTo(poker3));
+        assertEquals("QD",poker3.compareTo(poker4));
+        assertEquals("KD",poker4.compareTo(poker5));
+        assertEquals("AD",poker5.compareTo(poker6));
+
     }
 }
