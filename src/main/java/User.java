@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class User {
     private String userName;
     private List<Poker> pokers;
+    private static final Long COUNT_POKERS = 5L;
 
     public User(String userName, List<Poker> pokers) {
         this.userName = userName;
@@ -23,16 +25,12 @@ public class User {
     }
 
     public int getMyLevel() {
-        if(isPair()) return 2;
+        if (isPair()) return 2;
         return 1;
     }
 
-    private Boolean isPair(){
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            if(list.contains(pokers.get(i).getNumber())) return true;
-            list.add(pokers.get(i).getNumber());
-        }
-        return false;
+    private Boolean isPair() {
+        List<String> list = pokers.stream().map(poker -> poker.getNumber()).collect(Collectors.toList());
+        return list.stream().distinct().count() != COUNT_POKERS;
     }
 }
