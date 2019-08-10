@@ -5,10 +5,11 @@ import java.util.stream.Collectors;
 public class User {
     private String userName;
     private List<Poker> pokers;
+    private static final int IS_POKER_SIZE = 5;
     private static final int IS_ONE_PAIR = 4;
     private static final int IS_THREE_KIND = 3;
-    private static final Long IS_FLUSH = 1L;
     private static final int IS_FULL_HOUSE = 2;
+    private static final Long IS_FLUSH = 1L;
 
     private static final int HIGH_CARD_LEVEL = 1;
     private static final int PAIR_LEVEL = 2;
@@ -39,26 +40,38 @@ public class User {
         return duplicateLevel();
     }
 
-    private int duplicateLevel() {
-        int max = 2;
-        String temp = "";
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < pokers.size(); i++) {
-            if (list.contains(pokers.get(i).getNumber())) {
-                if (temp.equalsIgnoreCase(pokers.get(i).getNumber())) max++;
-                else temp = pokers.get(i).getNumber();
-            } else list.add(pokers.get(i).getNumber());
-        }
-        if (list.size() == pokers.size()) return HIGH_CARD_LEVEL;
-        else {
-            if (list.size() == IS_ONE_PAIR) return PAIR_LEVEL;
-            else if(list.size() == IS_FULL_HOUSE) return FULL_HOUSE_LEVEL;
-            else return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
-        }
+    private Boolean isFlush() {
+        List<String> list = pokers.stream().map(Poker::getColor).collect(Collectors.toList());
+        return list.stream().distinct().count() == IS_FLUSH;
     }
 
-    private Boolean isFlush() {
-        List<String> list = pokers.stream().map(poker -> poker.getColor()).collect(Collectors.toList());
-        return list.stream().distinct().count() == IS_FLUSH;
+    private int duplicateLevel() {
+        int maxDuplicate = 2;
+        List<String> list = new ArrayList<>();
+        maxDuplicate = getMaxDuplicate(maxDuplicate, list);
+        return getDuplicateLevel(maxDuplicate, list);
+    }
+
+    private int getMaxDuplicate(int max, List<String> list) {
+        String temp = "";
+        for (Poker poker : pokers) {
+            if (list.contains(poker.getNumber())) {
+                if (temp.equalsIgnoreCase(poker.getNumber())) max++;
+                else temp = poker.getNumber();
+            } else list.add(poker.getNumber());
+        }
+        return max;
+    }
+
+    private int getDuplicateLevel(int max, List<String> list) {
+        switch (list.size()) {
+            case IS_POKER_SIZE:
+                return HIGH_CARD_LEVEL;
+            case IS_ONE_PAIR:
+                return PAIR_LEVEL;
+            case IS_FULL_HOUSE:
+                return FULL_HOUSE_LEVEL;
+        }
+        return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
     }
 }
