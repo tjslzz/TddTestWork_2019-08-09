@@ -27,4 +27,8 @@ public class User {
     public void setPokers(List<Poker> pokers) {
         this.pokers = pokers;
     }
+
+    public Poker getMyMaxPoker() {
+        return pokers.stream().reduce(Poker::compareTo).orElse(null);
+    }
 }

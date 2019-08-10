@@ -7,12 +7,14 @@ public class Poker {
         this.number = number;
     }
 
-    protected String compareTo(Poker poker) {
+    protected Poker compareTo(Poker poker) {
         this.number = setNumber(this);
         poker.number = setNumber(poker);
-        if (Integer.valueOf(this.number) > Integer.valueOf(poker.number)) return this.toString();
-        else if (Integer.valueOf(this.number) == Integer.valueOf(poker.number)) return "平局";
-        return poker.toString();
+        if (Integer.valueOf(this.number) == Integer.valueOf(poker.number)) {
+            this.color = PokerColor.平局;
+            return this;
+        } else if (Integer.valueOf(this.number) > Integer.valueOf(poker.number)) return this;
+        return poker;
     }
 
     public String toString() {
