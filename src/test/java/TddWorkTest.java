@@ -64,16 +64,22 @@ public class TddWorkTest {
     }
 
     @Test
-    public void should_return_lev1_when_call_getMyLevel_given_pair() {
+    public void should_return_lev2_when_call_getMyLevel_given_pair() {
         user1.setPokers(pair());
         assertEquals(2, user1.getMyLevel());
     }
 
     @Test
-    public void should_return_winner_tomcat_when_call_judges_given_two_levels_user(){
+    public void should_return_winner_tomcat_when_call_judges_given_two_levels_user() {
         user1.setPokers(highCard());
         user2.setPokers(pair());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        assertEquals("Tomcat", tddWork.judges(user1, user2).getUserName());
+    }
+
+    @Test
+    public void should_return_lev3_when_call_getMyLevel_given_two_pairs() {
+        user1.setPokers(twoPair());
+        assertEquals(3, user1.getMyLevel());
     }
 
     private List<Poker> highCard() {
@@ -92,6 +98,16 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.C, "6"));
         list.add(new Poker(PokerColor.C, "8"));
+        list.add(new Poker(PokerColor.C, "10"));
+        return list;
+    }
+
+    private List<Poker> twoPair() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "2"));
+        list.add(new Poker(PokerColor.C, "2"));
+        list.add(new Poker(PokerColor.C, "6"));
+        list.add(new Poker(PokerColor.C, "6"));
         list.add(new Poker(PokerColor.C, "10"));
         return list;
     }
