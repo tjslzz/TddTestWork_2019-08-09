@@ -94,6 +94,12 @@ public class TddWorkTest {
         assertEquals(5, user1.getMyLevel());
     }
 
+    @Test
+    public void should_return_lev6_when_call_getMyLevel_given_full_house() {
+        user1.setPokers(fullHouse());
+        assertEquals(6, user1.getMyLevel());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
@@ -141,6 +147,16 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "6"));
         list.add(new Poker(PokerColor.C, "8"));
         list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
+    private List<Poker> fullHouse() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "2"));
+        list.add(new Poker(PokerColor.D, "2"));
+        list.add(new Poker(PokerColor.H, "2"));
+        list.add(new Poker(PokerColor.S, "8"));
+        list.add(new Poker(PokerColor.C, "8"));
         return list;
     }
 }
