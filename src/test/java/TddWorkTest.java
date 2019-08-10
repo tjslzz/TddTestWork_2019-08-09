@@ -69,6 +69,13 @@ public class TddWorkTest {
         assertEquals(2, user1.getMyLevel());
     }
 
+    @Test
+    public void should_return_winner_tomcat_when_call_judges_given_two_levels_user(){
+        user1.setPokers(highCard());
+        user2.setPokers(pair());
+        assertEquals("tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
