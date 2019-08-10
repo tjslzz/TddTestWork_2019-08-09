@@ -5,9 +5,8 @@ import java.util.stream.Collectors;
 public class User {
     private String userName;
     private List<Poker> pokers;
-    private static final Long COUNT_PAIR = 4L;
-    private static final Long COUNT_TWO_PAIR = 3L;
-    private static final int COUNT_THREE_KIND = 3;
+    private static final int IS_ONE_PAIR = 4;
+    private static final int IS_THREE_KIND = 3;
     private static final int HIGH_CARD_LEVEL = 1;
     private static final int PAIR_LEVEL = 2;
     private static final int TWO_PAIR_LEVEL = 3;
@@ -31,32 +30,23 @@ public class User {
     }
 
     public int getMyLevel() {
-        if (isThreeKind()) return THREE_KIND_LEVEL;
-        if (isTwoPair()) return TWO_PAIR_LEVEL;
-        if (isPair()) return PAIR_LEVEL;
-        return HIGH_CARD_LEVEL;
+        return duplicateLevel();
     }
 
-    private Boolean isPair() {
-        List<String> list = pokers.stream().map(poker -> poker.getNumber()).collect(Collectors.toList());
-        return list.stream().distinct().count() == COUNT_PAIR;
-    }
-
-    private Boolean isTwoPair() {
-        List<String> list = pokers.stream().map(poker -> poker.getNumber()).collect(Collectors.toList());
-        return list.stream().distinct().count() == COUNT_TWO_PAIR;
-    }
-
-    private Boolean isThreeKind() {
-        int max = 1;
+    private int duplicateLevel() {
+        int max = 2;
+        String temp = "";
         List<String> list = new ArrayList<>();
         for (int i = 0; i < pokers.size(); i++) {
             if (list.contains(pokers.get(i).getNumber())) {
-                max++;
-            } else {
-                list.add(pokers.get(i).getNumber());
-            }
+                if (temp.equalsIgnoreCase(pokers.get(i).getNumber())) max++;
+                else temp = pokers.get(i).getNumber();
+            } else list.add(pokers.get(i).getNumber());
         }
-        return max == COUNT_THREE_KIND;
+        if (list.size() == pokers.size()) return HIGH_CARD_LEVEL;
+        else {
+            if (list.size() == IS_ONE_PAIR) return PAIR_LEVEL;
+            else return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
+        }
     }
 }
