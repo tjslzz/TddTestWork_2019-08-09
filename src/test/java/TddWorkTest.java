@@ -112,6 +112,25 @@ public class TddWorkTest {
         assertEquals(8, user1.getMyLevel());
     }
 
+    @Test
+    public void should_return_true_winner_when_call_judge_given_different_levels_users() {
+        user1.setPokers(highCard());
+        user2.setPokers(pair());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        user1.setPokers(twoPair());
+        assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
+        user2.setPokers(threeKind());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        user1.setPokers(flush());
+        assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
+        user2.setPokers(fullHouse());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        user1.setPokers(fourKind());
+        assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
+        user2.setPokers(straightFlush());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
