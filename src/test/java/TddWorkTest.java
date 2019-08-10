@@ -56,4 +56,20 @@ public class TddWorkTest {
     public void should_return_winner_user_when_call_judges_given_two_users_with_each_five_pokers() {
         assertEquals("Tomcat", tddWork.judges(user1, user2).getUserName());
     }
+
+    @Test
+    public void should_return_lev1_when_call_getMyLevel_given_High_card(){
+        user1.setPokers(highCard());
+        assertEquals(1,user1.getMyLevel());
+    }
+
+    private List<Poker> highCard(){
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C,"2"));
+        list.add(new Poker(PokerColor.C,"4"));
+        list.add(new Poker(PokerColor.C,"6"));
+        list.add(new Poker(PokerColor.C,"8"));
+        list.add(new Poker(PokerColor.C,"10"));
+        return list;
+    }
 }

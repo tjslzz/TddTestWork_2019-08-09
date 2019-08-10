@@ -9,11 +9,19 @@ public class User {
         this.pokers = pokers;
     }
 
+    public void setPokers(List<Poker> pokers) {
+        this.pokers = pokers;
+    }
+
     public String getUserName() {
         return userName;
     }
 
     public Poker getMyMaxPoker() {
         return pokers.stream().reduce(Poker::compareTo).orElse(null);
+    }
+
+    public int getMyLevel() {
+        return 0;
     }
 }
