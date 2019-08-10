@@ -135,6 +135,8 @@ public class TddWorkTest {
         assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
         user2.setPokers(straightFlush());
         assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        user1.setPokers(straight());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     private List<Poker> highCard() {

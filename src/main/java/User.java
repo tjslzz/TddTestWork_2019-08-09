@@ -17,10 +17,11 @@ public class User {
     private static final int PAIR_LEVEL = 2;
     private static final int TWO_PAIR_LEVEL = 3;
     private static final int THREE_KIND_LEVEL = 4;
-    private static final int FLUSH_LEVEL = 5;
-    private static final int FULL_HOUSE_LEVEL = 6;
-    private static final int FOUR_KIND_LEVEL = 7;
-    private static final int STRAIGHT_FLUSH_LEVEL = 8;
+    private static final int STRAIGHT_LEVEL = 5;
+    private static final int FLUSH_LEVEL = 6;
+    private static final int FULL_HOUSE_LEVEL = 7;
+    private static final int FOUR_KIND_LEVEL = 8;
+    private static final int STRAIGHT_FLUSH_LEVEL = 9;
 
     public User(String userName, List<Poker> pokers) {
         this.userName = userName;
@@ -40,8 +41,8 @@ public class User {
     }
 
     public int getMyLevel() {
-        if (isFlush()) return isStraightFlush() ? STRAIGHT_FLUSH_LEVEL : FLUSH_LEVEL;
-        return duplicateLevel();
+        if (isFlush()) return isStraight() ? STRAIGHT_FLUSH_LEVEL : FLUSH_LEVEL;
+        return isStraight() ? STRAIGHT_LEVEL : duplicateLevel();
     }
 
     private Boolean isFlush() {
@@ -79,11 +80,11 @@ public class User {
         return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
     }
 
-    private Boolean isStraightFlush(){
+    private Boolean isStraight() {
         List<Integer> list = pokers.stream().mapToInt(poker -> Integer.valueOf(poker.setNumber(poker))).boxed().collect(Collectors.toList());
         int min = Collections.min(list);
         for (int i = 0; i < 5; i++) {
-            if(list.contains(min)) min++;
+            if (list.contains(min)) min++;
             else return false;
         }
         return true;
