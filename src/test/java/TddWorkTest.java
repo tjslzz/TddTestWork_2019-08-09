@@ -100,6 +100,12 @@ public class TddWorkTest {
         assertEquals(6, user1.getMyLevel());
     }
 
+    @Test
+    public void should_return_lev7_when_call_getMyLevel_given_four_of_a_kind() {
+        user1.setPokers(fourKind());
+        assertEquals(7, user1.getMyLevel());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
@@ -157,6 +163,16 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.H, "2"));
         list.add(new Poker(PokerColor.S, "8"));
         list.add(new Poker(PokerColor.C, "8"));
+        return list;
+    }
+
+    private List<Poker> fourKind() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "2"));
+        list.add(new Poker(PokerColor.D, "2"));
+        list.add(new Poker(PokerColor.H, "2"));
+        list.add(new Poker(PokerColor.S, "2"));
+        list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
 }
