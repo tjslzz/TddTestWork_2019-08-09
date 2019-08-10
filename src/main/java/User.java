@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,7 @@ public class User {
     private static final int FLUSH_LEVEL = 5;
     private static final int FULL_HOUSE_LEVEL = 6;
     private static final int FOUR_KIND_LEVEL = 7;
+    private static final int STRAIGHT_FLUSH_LEVEL = 8;
 
     public User(String userName, List<Poker> pokers) {
         this.userName = userName;
@@ -33,13 +35,18 @@ public class User {
         return userName;
     }
 
-    public Poker getMyMaxPoker() {
+    Poker getMyMaxPoker() {
         return pokers.stream().reduce(Poker::compareTo).orElse(null);
     }
 
     public int getMyLevel() {
-        if (isFlush()) return FLUSH_LEVEL;
+        if (isFlush()) return isStraightFlush() ? STRAIGHT_FLUSH_LEVEL : FLUSH_LEVEL;
         return duplicateLevel();
+    }
+
+    private Boolean isFlush() {
+        List<String> list = pokers.stream().map(Poker::getColor).collect(Collectors.toList());
+        return list.stream().distinct().count() == IS_FLUSH;
     }
 
     private int duplicateLevel() {
@@ -72,8 +79,13 @@ public class User {
         return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
     }
 
-    private Boolean isFlush() {
-        List<String> list = pokers.stream().map(Poker::getColor).collect(Collectors.toList());
-        return list.stream().distinct().count() == IS_FLUSH;
+    private Boolean isStraightFlush(){
+        List<Integer> list = pokers.stream().mapToInt(poker -> Integer.valueOf(poker.setNumber(poker))).boxed().collect(Collectors.toList());
+        int min = Collections.min(list);
+        for (int i = 0; i < 5; i++) {
+            if(list.contains(min)) min++;
+            else return false;
+        }
+        return true;
     }
 }

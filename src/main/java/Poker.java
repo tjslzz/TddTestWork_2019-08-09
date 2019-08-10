@@ -1,11 +1,11 @@
 public class Poker {
     private PokerColor color;
     private String number;
-    private static final String T_LEVEL = "11";
-    private static final String J_LEVEL = "12";
-    private static final String Q_LEVEL = "13";
-    private static final String K_LEVEL = "14";
-    private static final String A_LEVEL = "15";
+    private static final String T_LEVEL = "10";
+    private static final String J_LEVEL = "11";
+    private static final String Q_LEVEL = "12";
+    private static final String K_LEVEL = "13";
+    private static final String A_LEVEL = "14";
 
     protected Poker(PokerColor color, String number) {
         this.color = color;
@@ -28,7 +28,7 @@ public class Poker {
 
     public String getColor() { return color.name(); }
 
-    private String setNumber(Poker poker) {
+    public String setNumber(Poker poker) {
         switch (poker.number) {
             case "T":
                 return T_LEVEL;
