@@ -174,6 +174,27 @@ public class TddWorkTest {
         assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
+    @Test
+    public void should_return_bigger_full_house_when_call_judge_given_same_level_7(){
+        user1.setPokers(fullHouse());
+        user2.setPokers(sameFullHouse());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
+    @Test
+    public void should_return_bigger_four_kind_when_call_judge_given_same_level_8(){
+        user1.setPokers(fourKind());
+        user2.setPokers(sameFourKind());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
+    @Test
+    public void should_return_bigger_straight_flush_when_call_judge_given_same_level_9(){
+        user1.setPokers(straightFlush());
+        user2.setPokers(sameStraightFlush());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
@@ -293,12 +314,32 @@ public class TddWorkTest {
         return list;
     }
 
+    private List<Poker> sameFullHouse() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "3"));
+        list.add(new Poker(PokerColor.D, "3"));
+        list.add(new Poker(PokerColor.H, "3"));
+        list.add(new Poker(PokerColor.S, "9"));
+        list.add(new Poker(PokerColor.C, "9"));
+        return list;
+    }
+
     private List<Poker> fourKind() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.D, "2"));
         list.add(new Poker(PokerColor.H, "2"));
         list.add(new Poker(PokerColor.S, "2"));
+        list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
+    private List<Poker> sameFourKind() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "3"));
+        list.add(new Poker(PokerColor.D, "3"));
+        list.add(new Poker(PokerColor.H, "3"));
+        list.add(new Poker(PokerColor.S, "3"));
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
@@ -310,6 +351,16 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "8"));
         list.add(new Poker(PokerColor.C, "9"));
         list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
+    private List<Poker> sameStraightFlush() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "7"));
+        list.add(new Poker(PokerColor.C, "8"));
+        list.add(new Poker(PokerColor.C, "9"));
+        list.add(new Poker(PokerColor.C, "T"));
+        list.add(new Poker(PokerColor.C, "J"));
         return list;
     }
 
