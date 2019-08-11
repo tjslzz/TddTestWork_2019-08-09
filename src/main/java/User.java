@@ -83,6 +83,7 @@ public class User {
             if (list.contains(min)) min++;
             else return false;
         }
+        maxPoker = min;
         return true;
     }
 }
