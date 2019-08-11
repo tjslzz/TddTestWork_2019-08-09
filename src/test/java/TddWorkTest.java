@@ -168,9 +168,9 @@ public class TddWorkTest {
     }
 
     @Test
-    public void should_return_bigger_straight_when_call_judge_given_same_level_6(){
-        user1.setPokers(flush());
-        user2.setPokers(sameFlush());
+    public void should_return_bigger_flush_when_call_judge_given_same_level_6(){
+        user1.setPokers(sameFlush());
+        user2.setPokers(flush());
         assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 

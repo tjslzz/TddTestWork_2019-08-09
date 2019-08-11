@@ -36,6 +36,7 @@ public class User {
     }
 
     public int getMyLevel() {
+        maxPoker = Integer.valueOf(getMyMaxPoker().setNumber(getMyMaxPoker()));
         if (isFlush()) return isStraight() ? Common.STRAIGHT_FLUSH_LEVEL : Common.FLUSH_LEVEL;
         return isStraight() ? Common.STRAIGHT_LEVEL : duplicateLevel();
     }

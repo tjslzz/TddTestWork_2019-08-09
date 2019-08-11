@@ -10,6 +10,8 @@ public class TddWork {
                     return handleSameLevel(user1, user2);
                 case Common.STRAIGHT_LEVEL:
                     return handleSameLevel(user1, user2);
+                case Common.FLUSH_LEVEL:
+                    return handleSameLevel(user1, user2);
             }
             return user1.getMyMaxPoker().compareTo(user2.getMyMaxPoker()).equals(user1.getMyMaxPoker()) ? user1 : user2;
         }
