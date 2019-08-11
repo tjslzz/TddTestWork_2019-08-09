@@ -12,16 +12,7 @@ public class User {
     private static final int IS_THREE_KIND = 3;
     private static final int IS_FULL_HOUSE = 2;
     private static final Long IS_FLUSH = 1L;
-
-    private static final int HIGH_CARD_LEVEL = 1;
-    private static final int PAIR_LEVEL = 2;
-    private static final int TWO_PAIR_LEVEL = 3;
-    private static final int THREE_KIND_LEVEL = 4;
-    private static final int STRAIGHT_LEVEL = 5;
-    private static final int FLUSH_LEVEL = 6;
-    private static final int FULL_HOUSE_LEVEL = 7;
-    private static final int FOUR_KIND_LEVEL = 8;
-    private static final int STRAIGHT_FLUSH_LEVEL = 9;
+    private int maxPoker = 0;
 
     public User(String userName, List<Poker> pokers) {
         this.userName = userName;
@@ -40,9 +31,13 @@ public class User {
         return pokers.stream().reduce(Poker::compareTo).orElse(null);
     }
 
+    public int getMaxPoker() {
+        return maxPoker;
+    }
+
     public int getMyLevel() {
-        if (isFlush()) return isStraight() ? STRAIGHT_FLUSH_LEVEL : FLUSH_LEVEL;
-        return isStraight() ? STRAIGHT_LEVEL : duplicateLevel();
+        if (isFlush()) return isStraight() ? Common.STRAIGHT_FLUSH_LEVEL : Common.FLUSH_LEVEL;
+        return isStraight() ? Common.STRAIGHT_LEVEL : duplicateLevel();
     }
 
     private Boolean isFlush() {
@@ -65,19 +60,20 @@ public class User {
                 else temp = poker.getNumber();
             } else list.add(poker.getNumber());
         }
+        if (maxPoker < Integer.valueOf(temp)) maxPoker = Integer.valueOf(temp);
         return max;
     }
 
     private int getDuplicateLevel(int max, List<String> list) {
         switch (list.size()) {
             case IS_POKER_SIZE:
-                return HIGH_CARD_LEVEL;
+                return Common.HIGH_CARD_LEVEL;
             case IS_ONE_PAIR:
-                return PAIR_LEVEL;
+                return Common.PAIR_LEVEL;
             case IS_FULL_HOUSE:
-                return max == IS_FOUR_KIND ? FOUR_KIND_LEVEL : FULL_HOUSE_LEVEL;
+                return max == IS_FOUR_KIND ? Common.FOUR_KIND_LEVEL : Common.FULL_HOUSE_LEVEL;
         }
-        return max == IS_THREE_KIND ? THREE_KIND_LEVEL : TWO_PAIR_LEVEL;
+        return max == IS_THREE_KIND ? Common.THREE_KIND_LEVEL : Common.TWO_PAIR_LEVEL;
     }
 
     private Boolean isStraight() {
