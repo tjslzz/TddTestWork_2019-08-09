@@ -147,16 +147,23 @@ public class TddWorkTest {
     }
 
     @Test
-    public void should_return_bigger__two_pair_when_call_judge_given_same_level_3(){
+    public void should_return_bigger_two_pair_when_call_judge_given_same_level_3(){
         user1.setPokers(twoPair());
         user2.setPokers(sameTwoPair());
         assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
-    public void should_return_bigger__two_pair_when_call_judge_given_same_level_4(){
+    public void should_return_bigger_three_kind_when_call_judge_given_same_level_4(){
         user1.setPokers(threeKind());
         user2.setPokers(sameThreeKind());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
+    @Test
+    public void should_return_bigger_straight_when_call_judge_given_same_level_5(){
+        user1.setPokers(straight());
+        user2.setPokers(sameStraight());
         assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
@@ -236,6 +243,16 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.H, "T"));
         list.add(new Poker(PokerColor.S, "J"));
         list.add(new Poker(PokerColor.C, "Q"));
+        return list;
+    }
+    
+    private List<Poker> sameStraight() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "6"));
+        list.add(new Poker(PokerColor.D, "7"));
+        list.add(new Poker(PokerColor.H, "8"));
+        list.add(new Poker(PokerColor.S, "9"));
+        list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
 
