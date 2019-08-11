@@ -139,6 +139,13 @@ public class TddWorkTest {
         assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
+    @Test
+    public void should_return_bigger_pair_when_call_judge_given_same_level_2(){
+        user1.setPokers(pair());
+        user2.setPokers(samePair());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
@@ -228,4 +235,15 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
+
+    private List<Poker> samePair() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "3"));
+        list.add(new Poker(PokerColor.D, "3"));
+        list.add(new Poker(PokerColor.H, "6"));
+        list.add(new Poker(PokerColor.S, "8"));
+        list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
 }
