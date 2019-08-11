@@ -61,7 +61,7 @@ public class User {
                 else temp = poker.getNumber();
             } else list.add(poker.getNumber());
         }
-        if (maxPoker < Integer.valueOf(temp)) maxPoker = Integer.valueOf(temp);
+        if (!temp.equalsIgnoreCase("") && maxPoker < Integer.valueOf(temp)) maxPoker = Integer.valueOf(temp);
         return max;
     }
 
