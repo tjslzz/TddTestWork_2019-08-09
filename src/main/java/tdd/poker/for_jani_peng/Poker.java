@@ -1,3 +1,5 @@
+package tdd.poker.for_jani_peng;
+
 public class Poker {
     private PokerColor color;
     private String number;

@@ -1,3 +1,5 @@
+package tdd.poker.for_jani_peng;
+
 public class TddWork {
     public User judges(User user1, User user2) {
         return user1.getMyLevel() == user2.getMyLevel() ? handleSameLevel(user1, user2) : handleDifferentLevel(user1, user2);

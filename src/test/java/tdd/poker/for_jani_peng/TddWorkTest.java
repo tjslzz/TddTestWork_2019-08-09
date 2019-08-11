@@ -1,3 +1,6 @@
+package tdd.poker.for_jani_peng;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,164 +38,164 @@ public class TddWorkTest {
 
     @Test
     public void should_return_3D_when_call_compareTo_given_2H_and_3D() {
-        assertEquals("3D", pokers1.get(0).compareTo(pokers1.get(1)).toString());
+        Assert.assertEquals("3D", pokers1.get(0).compareTo(pokers1.get(1)).toString());
     }
 
     @Test
     public void should_return_equal_when_call_compareTo_given_2H_and_2H() {
-        assertEquals("1平局", pokers1.get(0).compareTo(pokers1.get(0)).toString());
+        Assert.assertEquals("1平局", pokers1.get(0).compareTo(pokers1.get(0)).toString());
     }
 
     @Test
     public void should_return_bigger_one_when_call_compareTo_given_word_and_number() {
-        assertEquals("TD", new Poker(PokerColor.D, "2").compareTo(new Poker(PokerColor.D, "T")).toString());
-        assertEquals("JD", new Poker(PokerColor.D, "T").compareTo(new Poker(PokerColor.D, "J")).toString());
-        assertEquals("QD", new Poker(PokerColor.D, "J").compareTo(new Poker(PokerColor.D, "Q")).toString());
-        assertEquals("KD", new Poker(PokerColor.D, "Q").compareTo(new Poker(PokerColor.D, "K")).toString());
-        assertEquals("AD", new Poker(PokerColor.D, "K").compareTo(new Poker(PokerColor.D, "A")).toString());
+        Assert.assertEquals("TD", new Poker(PokerColor.D, "2").compareTo(new Poker(PokerColor.D, "T")).toString());
+        Assert.assertEquals("JD", new Poker(PokerColor.D, "T").compareTo(new Poker(PokerColor.D, "J")).toString());
+        Assert.assertEquals("QD", new Poker(PokerColor.D, "J").compareTo(new Poker(PokerColor.D, "Q")).toString());
+        Assert.assertEquals("KD", new Poker(PokerColor.D, "Q").compareTo(new Poker(PokerColor.D, "K")).toString());
+        Assert.assertEquals("AD", new Poker(PokerColor.D, "K").compareTo(new Poker(PokerColor.D, "A")).toString());
     }
 
     @Test
     public void should_return_winner_user_when_call_judges_given_two_users_with_each_five_pokers() {
-        assertEquals("Tomcat", tddWork.judges(user1, user2).getUserName());
+        Assert.assertEquals("Tomcat", tddWork.judges(user1, user2).getUserName());
     }
 
     @Test
     public void should_return_lev1_when_call_getMyLevel_given_high_card() {
         user1.setPokers(highCard());
-        assertEquals(1, user1.getMyLevel());
+        Assert.assertEquals(1, user1.getMyLevel());
     }
 
     @Test
     public void should_return_lev2_when_call_getMyLevel_given_pair() {
         user1.setPokers(pair());
-        assertEquals(2, user1.getMyLevel());
+        Assert.assertEquals(2, user1.getMyLevel());
     }
 
     @Test
     public void should_return_winner_tomcat_when_call_judges_given_two_levels_user() {
         user1.setPokers(highCard());
         user2.setPokers(pair());
-        assertEquals("Tomcat", tddWork.judges(user1, user2).getUserName());
+        Assert.assertEquals("Tomcat", tddWork.judges(user1, user2).getUserName());
     }
 
     @Test
     public void should_return_lev3_when_call_getMyLevel_given_two_pairs() {
         user1.setPokers(twoPair());
-        assertEquals(3, user1.getMyLevel());
+        Assert.assertEquals(3, user1.getMyLevel());
     }
 
     @Test
     public void should_return_lev4_when_call_getMyLevel_given_three_of_a_kind() {
         user1.setPokers(threeKind());
-        assertEquals(4, user1.getMyLevel());
+        Assert.assertEquals(4, user1.getMyLevel());
     }
 
     @Test
     public void should_return_lev5_when_call_getMyLevel_given_straight() {
         user1.setPokers(straight());
-        assertEquals(5, user1.getMyLevel());
+        Assert.assertEquals(5, user1.getMyLevel());
     }
 
     @Test
     public void should_return_lev6_when_call_getMyLevel_given_flush() {
         user1.setPokers(flush());
-        assertEquals(6, user1.getMyLevel());
+        Assert.assertEquals(6, user1.getMyLevel());
     }
 
     @Test
     public void should_return_lev7_when_call_getMyLevel_given_full_house() {
         user1.setPokers(fullHouse());
-        assertEquals(7, user1.getMyLevel());
+        Assert.assertEquals(7, user1.getMyLevel());
     }
 
     @Test
     public void should_return_lev8_when_call_getMyLevel_given_four_of_a_kind() {
         user1.setPokers(fourKind());
-        assertEquals(8, user1.getMyLevel());
+        Assert.assertEquals(8, user1.getMyLevel());
     }
 
     @Test
     public void should_return_lev9_when_call_getMyLevel_given_straight_flush() {
         user1.setPokers(straightFlush());
-        assertEquals(9, user1.getMyLevel());
+        Assert.assertEquals(9, user1.getMyLevel());
     }
 
     @Test
     public void should_return_true_winner_when_call_judge_given_different_levels_users() {
         user1.setPokers(highCard());
         user2.setPokers(pair());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
         user1.setPokers(twoPair());
-        assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
         user2.setPokers(threeKind());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
         user1.setPokers(flush());
-        assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
         user2.setPokers(fullHouse());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
         user1.setPokers(fourKind());
-        assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("JerryLi",tddWork.judges(user1,user2).getUserName());
         user2.setPokers(straightFlush());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
         user1.setPokers(straight());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
     public void should_return_bigger_pair_when_call_judge_given_same_level_2(){
         user1.setPokers(pair());
         user2.setPokers(samePair());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
     public void should_return_bigger_two_pair_when_call_judge_given_same_level_3(){
         user1.setPokers(twoPair());
         user2.setPokers(sameTwoPair());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
     public void should_return_bigger_three_kind_when_call_judge_given_same_level_4(){
         user1.setPokers(threeKind());
         user2.setPokers(sameThreeKind());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
     public void should_return_bigger_straight_when_call_judge_given_same_level_5(){
         user1.setPokers(sameStraight());
         user2.setPokers(straight());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
     public void should_return_bigger_flush_when_call_judge_given_same_level_6(){
         user1.setPokers(sameFlush());
         user2.setPokers(flush());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
     public void should_return_bigger_full_house_when_call_judge_given_same_level_7(){
         user1.setPokers(fullHouse());
         user2.setPokers(sameFullHouse());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
     public void should_return_bigger_four_kind_when_call_judge_given_same_level_8(){
         user1.setPokers(fourKind());
         user2.setPokers(sameFourKind());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     @Test
     public void should_return_bigger_straight_flush_when_call_judge_given_same_level_9(){
         user1.setPokers(straightFlush());
         user2.setPokers(sameStraightFlush());
-        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+        Assert.assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
     private List<Poker> highCard() {

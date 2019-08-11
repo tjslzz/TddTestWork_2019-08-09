@@ -1,3 +1,5 @@
+package tdd.poker.for_jani_peng;
+
 public class Common {
     public static final int HIGH_CARD_LEVEL = 1;
     public static final int PAIR_LEVEL = 2;
