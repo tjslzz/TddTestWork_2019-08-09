@@ -153,6 +153,13 @@ public class TddWorkTest {
         assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
+    @Test
+    public void should_return_bigger__two_pair_when_call_judge_given_same_level_4(){
+        user1.setPokers(threeKind());
+        user2.setPokers(sameThreeKind());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
@@ -173,6 +180,16 @@ public class TddWorkTest {
         return list;
     }
 
+    private List<Poker> samePair() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "3"));
+        list.add(new Poker(PokerColor.D, "3"));
+        list.add(new Poker(PokerColor.H, "6"));
+        list.add(new Poker(PokerColor.S, "8"));
+        list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
     private List<Poker> twoPair() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
@@ -182,12 +199,31 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
+    private List<Poker> sameTwoPair() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "3"));
+        list.add(new Poker(PokerColor.D, "3"));
+        list.add(new Poker(PokerColor.H, "7"));
+        list.add(new Poker(PokerColor.S, "7"));
+        list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
 
     private List<Poker> threeKind() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.D, "2"));
         list.add(new Poker(PokerColor.H, "2"));
+        list.add(new Poker(PokerColor.S, "6"));
+        list.add(new Poker(PokerColor.C, "T"));
+        return list;
+    }
+
+    private List<Poker> sameThreeKind() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "3"));
+        list.add(new Poker(PokerColor.D, "3"));
+        list.add(new Poker(PokerColor.H, "3"));
         list.add(new Poker(PokerColor.S, "6"));
         list.add(new Poker(PokerColor.C, "T"));
         return list;
@@ -239,26 +275,6 @@ public class TddWorkTest {
         list.add(new Poker(PokerColor.C, "7"));
         list.add(new Poker(PokerColor.C, "8"));
         list.add(new Poker(PokerColor.C, "9"));
-        list.add(new Poker(PokerColor.C, "T"));
-        return list;
-    }
-
-    private List<Poker> samePair() {
-        List<Poker> list = new ArrayList<>();
-        list.add(new Poker(PokerColor.C, "3"));
-        list.add(new Poker(PokerColor.D, "3"));
-        list.add(new Poker(PokerColor.H, "6"));
-        list.add(new Poker(PokerColor.S, "8"));
-        list.add(new Poker(PokerColor.C, "T"));
-        return list;
-    }
-    
-    private List<Poker> sameTwoPair() {
-        List<Poker> list = new ArrayList<>();
-        list.add(new Poker(PokerColor.C, "3"));
-        list.add(new Poker(PokerColor.D, "3"));
-        list.add(new Poker(PokerColor.H, "7"));
-        list.add(new Poker(PokerColor.S, "7"));
         list.add(new Poker(PokerColor.C, "T"));
         return list;
     }
