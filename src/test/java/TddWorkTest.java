@@ -167,6 +167,13 @@ public class TddWorkTest {
         assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
     }
 
+    @Test
+    public void should_return_bigger_straight_when_call_judge_given_same_level_6(){
+        user1.setPokers(flush());
+        user2.setPokers(sameFlush());
+        assertEquals("Tomcat",tddWork.judges(user1,user2).getUserName());
+    }
+
     private List<Poker> highCard() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
@@ -257,6 +264,16 @@ public class TddWorkTest {
     }
 
     private List<Poker> flush() {
+        List<Poker> list = new ArrayList<>();
+        list.add(new Poker(PokerColor.C, "2"));
+        list.add(new Poker(PokerColor.C, "4"));
+        list.add(new Poker(PokerColor.C, "6"));
+        list.add(new Poker(PokerColor.C, "8"));
+        list.add(new Poker(PokerColor.C, "A"));
+        return list;
+    }
+
+    private List<Poker> sameFlush() {
         List<Poker> list = new ArrayList<>();
         list.add(new Poker(PokerColor.C, "2"));
         list.add(new Poker(PokerColor.C, "4"));
